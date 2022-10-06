@@ -1,0 +1,41 @@
+<!doctype html>
+
+<head>
+ <title> MyNotes </title> 
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+
+</head>
+
+
+
+ 
+<body class="main">
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href=""> MyNotes</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Notes</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Add Note</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="splash-container">
+    <div class="splash">
+        <h1 class="splash-head">Easy way to take notes</h1>
+        <p>
+            <a href="{{url_for('templates', filename='show.html') }}" class="pure-button pure-button-primary">Get Started</a>
+        </p>
+    </div>
+</div>
+</body>
+
