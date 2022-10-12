@@ -1,5 +1,6 @@
 <!doctype html>
-
+<html>
+    
 <head>
  <title>Add Notes </title> 
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
@@ -11,41 +12,61 @@
 </head>
 
 
-<body>
+<body style=" background:  #bfd7ef; color:#1f3b57">
 
 
 
-    <div class="header">
-        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-            <a class="pure-menu-heading" href=""> EasyTasks</a>
-    
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item "><a href="/" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="{{ url_for('tasks') }}" class="pure-menu-link">Tasks</a></li>
-                <li class="pure-menu-item"><a href="{{ url_for('addnote') }}" class="pure-menu-link">Add Tasks</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link"  style="pointer-events:none; opacity:0.6;" >Sign Up</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link" style="pointer-events:none; opacity:0.6;">Login</a></li>
-    
-            </ul>
-        </div>
-    
-    </div>
+    {% from 'macros.html' import navbar %}
+    {{navbar() }}
 
-
-
-    <h2 style="text-align:left; position:absolute;
-    top:10%; left:1%;"> Your Tasks </h2>
-    <div style=" margin: auto; text-align:center;align-items: center;position:absolute;
-    top:30%; width:100%">
+    <h2 style="text-align:left; 
+    margin-top:10%; margin-left:1%;"> Your Tasks </h2>
+     <div style=" margin: auto; text-align:center;align-items: center;position:absolute;
+    top:20%; width:100%">
     <form class="pure-form">
+        <div>
         <fieldset class="pure-input-rounded">
             <input type="text" class="pure-input-1-2" style="width: 100%;
-            height: 70px;" placeholder="Search Task" name="tasksearch" maxlength="70" />  
+            height: 30px;" placeholder="Search Task" name="tasksearch" maxlength="70" />  
         </fieldset>
-        <button type="submit" class="pure-button pure-input-1-2 pure-button-primary" style="width:30%;">Submit</button>
-        
+        <div style="margin-left:1%;">
+        <button type="submit" class="pure-button pure-input-1-2 pure-button-primary" style="width:100%;">Search</button>
+        </div>
+    </div>
 </form>	
 </body>
  </div>
 
-   
+
+<div style="margin-top:5%; margin-left:5%; width: 80%; ">
+ {% for todo in todo_list %}
+ {% if todo.iscomplete %}
+
+
+ <div style=" position:relative; background-color: whitesmoke;border: 1px solid blue; padding:30px;"> <h2> {{todo.task}}</h2>
+    <div style="position:absolute; left:90%;top:10%; background: rgb(104, 255, 45); color: white;"> Done !   </div>
+    <a style="display: inline-block;" class='blu-button' style='width:7%; ' href="/update/{{todo.noteid }}" > Update</a>
+    <a style="display: inline-block;" class='red-button' style='width:7%; ' href="/delete/{{todo.noteid }}" > Delete</a>
+
+
+</div><br>
+
+{% else %}
+
+
+<div style=" position:relative; background-color: whitesmoke;border: 1px solid blue; padding:30px;"> <h2> {{todo.task}}</h2>
+    <div style="position:absolute; left:90%;top:10%; background: rgb(249, 148, 15); padding: 5px; color: white;"> Pending !  </div>
+    
+    
+        <a style="display: inline-block;" class='blu-button' style='width:7%; ' href="/update/{{todo.noteid }}" > Update</a>
+        <a style="display: inline-block;" class='red-button' style='width:7%; ' href="/delete/{{todo.noteid }}" > Delete</a>
+
+
+    </div><br>
+{% endif %}
+
+
+{% endfor %}
+</div>
+ 
+</html>
